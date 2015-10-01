@@ -1,21 +1,13 @@
 # open.cpp
 
-The following C++ standard library is used:
+The following libraries are used:
 
 ```cpp
-#include <iostream>
+#include <iostream> // C++ IO Stream Library
+#include <cstdlib>  // C Standard Library
+#include <cstring>  // C String Library
+#include <cerrno>   // C Error Library
+#include <fcntl.h>  // Unix File Control Library
 ```
 
-The following C standard libraries are used:
-
-```cpp
-#include <cstdlib>
-#include <cstring>
-#include <cerrno>
-```
-
-The following system libraties are used:
-
-```cpp
-#include <fcntl.h>
-```
+# 
