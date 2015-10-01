@@ -1,0 +1,6 @@
+Opened hello.txt; fd = 3; error = Success
+Dumping File...
+hello
+Closed hello.txt; cr = 0; error = Success
+ðîBjü
+Closed hello.txt; cr = 0; error = Success
