@@ -14,6 +14,13 @@ The following libraries are used:
 #include <fcntl.h>  // Unix File Control Library // $ man 0p fcntl.h
 ```
 
+The following C++ ```using``` statements are used:
+
+```cpp
+using std::cout;
+using std::endl;
+```
+
 ## Other Notes
 
 
