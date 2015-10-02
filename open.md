@@ -7,11 +7,11 @@
 The following libraries are used:
 
 ```cpp
-#include <iostream> // C++ IO Stream Library
-#include <cstdlib>  // C Standard Library
-#include <cstring>  // C String Library
-#include <cerrno>   // C Error Library
-#include <fcntl.h>  // Unix File Control Library
+#include <iostream> // C++ IO Stream Library      
+#include <cstdlib>  // C Standard Library        // $ man 0p stdlib.h
+#include <cstring>  // C String Library          // $ man 0p string.h
+#include <cerrno>   // C Error Library           // $ man 0p errno.h
+#include <fcntl.h>  // Unix File Control Library // $ man 0p fcntl.h
 ```
 
 ## Other Notes
