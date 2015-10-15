@@ -30,10 +30,12 @@ int main(const int argc, const char * argv []) {
 	 << "fd = " << fd  << " (should be -1); "
 	 << "error = " << strerror(errno) 
 	 << endl;
+    exit(0);
   } // if
 
   struct stat buf;
   fstat(fd, &buf);
+
   cout << "Permissions: "
        << (((buf.st_mode & S_IRUSR) != 0) ? "r" : "-") // user-read?
        << (((buf.st_mode & S_IWUSR) != 0) ? "w" : "-") // user-write?
