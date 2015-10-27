@@ -29,21 +29,10 @@ int main() {
     } // for
     exit(42);
   } else {                           // in parent
-    /* waitpid(): on success, returns the process ID of the child whose state
-     * has changed; if WNOHANG was specified and one or more child(ren)
-     * specified by pid exist, but have not yet changed state, then 0 is
-     * returned. On error, -1 is returned.
-     */
-    if ((wpid = waitpid(pid, &pstatus, WNOHANG)) == -1) {
-      perror("waitpid");
-    } else if (wpid == 0) {
-      cout << "no pstatus changes detected" << endl;
-    } else if (WIFEXITED(pstatus)) {
+    wpid = waitpid(pid, &pstatus, WNOHANG);
+    if (WIFEXITED(pstatus)) {
       cout << "child with pid = "                << wpid                 << " "
 	   << "exited normally with pstatus = "  << WEXITSTATUS(pstatus) << endl;
-    } else if (WIFSIGNALED(pstatus)) {
-      cout << "child with pid = "                << wpid                 << " "
-	   << "exited abnormally from signal = " << WTERMSIG(pstatus)    << endl;
     } // if
   } // if
   return EXIT_SUCCESS;
