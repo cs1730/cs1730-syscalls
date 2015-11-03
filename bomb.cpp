@@ -9,9 +9,9 @@ using std::endl;
 int main() {
   pid_t pid;
   while (true) {
-    pid = fork();
-    if (pid == 0) {
-      cout << "in process PID = " << getpid() << endl;
+    if ((pid = fork()) == 0) {
+      cout << "in child process PID = " << getpid() << endl;
+      while (true);
     } // if
   } // while
   return EXIT_SUCCESS;
