@@ -19,7 +19,7 @@ using the ```jobs``` command:
 $ jobs -l
 ```
 
-Now, use ```kill`` to send ```SIGTSTP```. Replace ```pid``` with the process's
+Now, use ```kill``` to send ```SIGTSTP```. Replace ```pid``` with the process's
 PID.
 
 ```
