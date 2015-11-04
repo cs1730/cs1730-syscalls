@@ -21,6 +21,7 @@ int main() {
   set_sig_handler(SIGTSTP, sig_handler); // set SIGTSTP handler
   set_sig_handler( SIGINT, sig_handler); // set  SIGINT handler
   while (true) pause();                  // pause until signal is received
+  //for(;;) pause();                     // how a C programmer would write the previous line
   return EXIT_SUCCESS; 
 } // main
 
