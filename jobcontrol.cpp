@@ -14,14 +14,15 @@ void enforce_background();
 void sig_handler(int);
 
 int main() {
-  enforce_background();
-  struct sigaction sa;
-  sa.sa_handler = sig_handler;
+  cout.setf(std::ios_base::unitbuf); // turn off buffering for cout
+  enforce_background();              // make sure we're in a bg process group
+  struct sigaction sa;               // sigaction struct object
+  sa.sa_handler = sig_handler;       // set disposition
   if (sigaction(SIGCONT, &sa, nullptr) == -1) perror("sigaction");
   if (sigaction(SIGTSTP, &sa, nullptr) == -1) perror("sigaction");
   if (sigaction( SIGINT, &sa, nullptr) == -1) perror("sigaction");
-  while (true) pause();
-  return EXIT_SUCCESS;
+  while (true) pause();              // pause until signal is received
+  return EXIT_SUCCESS; 
 } // main
 
 void enforce_background() {
