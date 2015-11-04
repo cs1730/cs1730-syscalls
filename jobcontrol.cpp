@@ -12,16 +12,15 @@ using std::endl;
 
 void enforce_background();
 void sig_handler(int);
+void set_sig_handler(int, sighandler_t);
 
 int main() {
-  cout.setf(std::ios_base::unitbuf); // turn off buffering for cout
-  enforce_background();              // make sure we're in a bg process group
-  struct sigaction sa;               // sigaction struct object
-  sa.sa_handler = sig_handler;       // set disposition
-  if (sigaction(SIGCONT, &sa, nullptr) == -1) perror("sigaction");
-  if (sigaction(SIGTSTP, &sa, nullptr) == -1) perror("sigaction");
-  if (sigaction( SIGINT, &sa, nullptr) == -1) perror("sigaction");
-  while (true) pause();              // pause until signal is received
+  cout.setf(std::ios_base::unitbuf);     // turn off buffering for cout
+  enforce_background();                  // make sure we're in a bg process group
+  set_sig_handler(SIGCONT, sig_handler); // set SIGCONT handler
+  set_sig_handler(SIGTSTP, sig_handler); // set SIGTSTP handler
+  set_sig_handler( SIGINT, sig_handler); // set  SIGINT handler
+  while (true) pause();                  // pause until signal is received
   return EXIT_SUCCESS; 
 } // main
 
@@ -41,5 +40,11 @@ void sig_handler(int signo) {
        << signo << " (" << strsignal(signo) << ")"
        << endl;
 } // sig_handler
+
+void set_sig_handler(int signo, sighandler_t handler) {
+  struct sigaction sa;     // sigaction struct object
+  sa.sa_handler = handler; // set disposition
+  if (sigaction(signo, &sa, nullptr) == -1) perror("sigaction");
+} // setup_sig_handler
 
 
