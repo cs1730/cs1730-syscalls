@@ -4,7 +4,7 @@ This job control example is designed to emphasize the following:
 
  * ```SIGCONT``` will still continue a process, even with a handler set.
  * ```SIGTSTP``` will **NOT** stop a process unless its default handler is set.
- * ```SIGINT``` **CAN** be change its handler disposition.
+ * ```SIGINT``` **CAN** change its handler disposition.
 
 To play around with this, execute the program in the background.
 
