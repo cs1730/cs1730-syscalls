@@ -48,5 +48,5 @@ $ kill -SIGCONT pid
 The handler will execute, and the process will continue. You can verify this
 using the jobs commands.
 
-To terminate the process, use ```kill`` to send ```SIGTERM```.
+To terminate the process, use ```kill``` to send ```SIGTERM```.
 
