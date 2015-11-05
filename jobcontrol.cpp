@@ -5,6 +5,7 @@
 #include <cstring>
 #include <unistd.h>
 #include <signal.h>
+#include <sys/types.h>
 
 using std::cerr;
 using std::cout;
@@ -41,6 +42,7 @@ void sig_handler(int signo) {
        << signo << " (" << strsignal(signo) << ") "
        << "[" << "use \"jobs -l\" to inspect" << "]"
        << endl;
+  // if (signo == SIGCONT) kill(getpid(), SIGSTOP);
 } // sig_handler
 
 // Why not just use the signal function? (see signal(2))
