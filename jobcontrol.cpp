@@ -43,6 +43,7 @@ void sig_handler(int signo) {
        << endl;
 } // sig_handler
 
+// Why not just use the signal function? (see signal(2))
 void set_sig_handler(int signo, sighandler_t handler) {
   struct sigaction sa;     // sigaction struct object
   sa.sa_handler = handler; // set disposition
