@@ -38,7 +38,8 @@ void enforce_background() {
 
 void sig_handler(int signo) {
   cout << "Caught signal " 
-       << signo << " (" << strsignal(signo) << ")"
+       << signo << " (" << strsignal(signo) << ") "
+       << "[" << "use \"jobs -l\" to inspect" << "]"
        << endl;
 } // sig_handler
 
