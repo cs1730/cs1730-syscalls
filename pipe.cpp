@@ -9,7 +9,6 @@
 using namespace std;
 
 void close_pipe(int pipefd [2]);
-void setup_exec(char ** args, int pipefd [2], int stdin, int stdout);
 
 int main(const int argc, const char * argv []) {
 
@@ -93,10 +92,5 @@ void close_pipe(int pipefd [2]) {
     exit(EXIT_FAILURE);
   } // if
 } // close_pipe
-
-void setup_exec(char ** args, int pipefd [2], int stdin, int stdout) {
-
-
-} // setup_exec
 
 
