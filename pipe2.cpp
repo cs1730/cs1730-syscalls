@@ -97,8 +97,8 @@ void dl_cstrvec(vector<char *> & cstrvec) {
 void nice_exec(vector<string> strargs) {
     vector<char *> cstrargs = mk_cstrvec(strargs);
     execvp(cstrargs.at(0), &cstrargs.at(0));
-    dl_cstrvec(cstrargs);
     perror("execvp");
+    dl_cstrvec(cstrargs);
     exit(EXIT_FAILURE);
 } // nice_exec
 
