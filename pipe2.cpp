@@ -12,6 +12,7 @@ using namespace std;
 
 void close_pipe(int pipefd [2]);
 vector<char *> mk_cstrvec(vector<string> & strvec);
+void nice_exec(vector<string> args);
 
 int main(const int argc, const char * argv []) {
 
@@ -37,11 +38,7 @@ int main(const int argc, const char * argv []) {
     close_pipe(pipefd);
 
     vector<string> strargs { "cat", "pipe.cpp" };
-    vector<char *> cstrargs = mk_cstrvec(strargs);
-    execvp(cstrargs.at(0), &cstrargs.at(0));
-    
-    perror("execvp");
-    exit(EXIT_FAILURE);
+    nice_exec(strargs);
 
   } // if
 
@@ -58,11 +55,7 @@ int main(const int argc, const char * argv []) {
     close_pipe(pipefd);
 
     vector<string> strargs { "less" };
-    vector<char *> cstrargs = mk_cstrvec(strargs);
-    execvp(cstrargs.at(0), &cstrargs.at(0));
-    
-    perror("execvp");
-    exit(EXIT_FAILURE);
+    nice_exec(strargs);
 
   } // if
 
@@ -93,4 +86,11 @@ vector<char *> mk_cstrvec(vector<string> & strvec) {
   cstrvec.push_back(nullptr);
   return cstrvec;
 } // mk_cstrvec
+
+void nice_exec(vector<string> strargs) {
+    vector<char *> cstrargs = mk_cstrvec(strargs);
+    execvp(cstrargs.at(0), &cstrargs.at(0));
+    perror("execvp");
+    exit(EXIT_FAILURE);
+} // nice_exec
 
