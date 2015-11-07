@@ -11,7 +11,7 @@ following attributes:
 
 ```Linux nike.cs.uga.edu 2.6.32-573.1.1.el6.x86_64```
 
-# Colophon
+## Colophon
 
 This project was created by [Michael E. Cotterell](http://michaelcotterell.com/),
 a (at the time of this writing) Faculty Instructor and Ph.D. Student in the
