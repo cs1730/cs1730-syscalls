@@ -18,3 +18,15 @@ Here are a few ways in which you can contribute:
  * Add <code>filename.md</code> Commentary (5 points)
  * Add a New Example (5 points)
 
+These contributions can be additive with respect to points.
+
+## General Overview
+
+### Bug Fixes
+
+### Inline Commentary
+
+### <code>filename.md</code> Commentary
+
+### New Example
+
