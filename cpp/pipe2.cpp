@@ -55,7 +55,7 @@ int main(const int argc, const char * argv []) {
 
     close_pipe(pipefd);
 
-    vector<string> strargs { "lessp" };
+    vector<string> strargs { "less" };
     nice_exec(strargs);
 
   } // if
