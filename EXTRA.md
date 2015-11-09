@@ -1,8 +1,8 @@
 
 # Extra Credit Opportunities
 
-System Call                   | Description
------------------------------ | -----------
+System Call                   | Description | Contributor
+----------------------------- | ----------- | -----------
 ```acct```                    | switch process accounting on or off
 ```brk```, ```sbrk```         | change data segment size
 ```chroot```                  | change root directory
