@@ -27,29 +27,22 @@ int main(const int argc, const char * argv []) {
   if ((pid = fork()) == -1) {
     nope_out("fork");
   } else if (pid == 0) {
-
+    vector<string> strargs { "cat", "pipe2.cpp" };
     if (dup2(pipefd[1], STDOUT_FILENO) == -1) nope_out("dup2");
     close_pipe(pipefd);
-
-    vector<string> strargs { "cat", "pipe2.cpp" };
     nice_exec(strargs);
-
   } // if
 
   if ((pid = fork()) == -1) {
     nope_out("fork");
   } else if (pid == 0) {
-
+    vector<string> strargs { "less" };
     if (dup2(pipefd[0], STDIN_FILENO) == -1)  nope_out("dup2");
     close_pipe(pipefd);
-
-    vector<string> strargs { "less" };
     nice_exec(strargs);
-
   } // if
 
   close_pipe(pipefd);
-
   waitpid(pid, nullptr, 0);
   return EXIT_SUCCESS;
 
@@ -84,6 +77,11 @@ void nice_exec(vector<string> strargs) {
     exit(EXIT_FAILURE);
 } // nice_exec
 
+/** Prints out the latest errno error and exits the process with EXIT_FAILURE.
+ *  It should be noted that the name of this function is not portable. Most
+ *  persons older than you will NOT understand the name of this function. They
+ *  will be confused. Keep this in mind. 
+ */
 inline void nope_out(const string & sc_name) {
   perror(sc_name.c_str());
   exit(EXIT_FAILURE);
