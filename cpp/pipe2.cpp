@@ -14,6 +14,7 @@ void close_pipe(int pipefd [2]);
 vector<char *> mk_cstrvec(vector<string> & strvec);
 void dl_cstrvec(vector<char *> & cstrvec);
 void nice_exec(vector<string> args);
+inline void nope_out(const string & sc_name); 
 
 int main(const int argc, const char * argv []) {
 
@@ -21,38 +22,25 @@ int main(const int argc, const char * argv []) {
   int pid;
 
   // create pipe
-  if (pipe(pipefd) == -1) {
-    perror("pipe");
-    exit(EXIT_FAILURE);
-  } // if
+  if (pipe(pipefd) == -1) nope_out("pipe");
 
   if ((pid = fork()) == -1) {
-    perror("fork");
-    exit(EXIT_FAILURE);
+    nope_out("fork");
   } else if (pid == 0) {
 
-    if (dup2(pipefd[1], STDOUT_FILENO) == -1) {
-      perror("dup2");
-      exit(EXIT_FAILURE);
-    } // if
-
+    if (dup2(pipefd[1], STDOUT_FILENO) == -1) nope_out("dup2");
     close_pipe(pipefd);
 
-    vector<string> strargs { "cat", "pipe.cpp" };
+    vector<string> strargs { "cat", "pipe2.cpp" };
     nice_exec(strargs);
 
   } // if
 
   if ((pid = fork()) == -1) {
-    perror("fork");
-    exit(EXIT_FAILURE);
+    nope_out("fork");
   } else if (pid == 0) {
 
-    if (dup2(pipefd[0], STDIN_FILENO) == -1) {
-      perror("dup2");
-      exit(EXIT_FAILURE);
-    } // if
-
+    if (dup2(pipefd[0], STDIN_FILENO) == -1)  nope_out("dup2");
     close_pipe(pipefd);
 
     vector<string> strargs { "less" };
@@ -68,14 +56,8 @@ int main(const int argc, const char * argv []) {
 } // main
 
 void close_pipe(int pipefd [2]) {
-  if (close(pipefd[0]) == -1) {
-    perror("close");
-    exit(EXIT_FAILURE);
-  } // if
-  if (close(pipefd[1]) == -1) {
-    perror("close");
-    exit(EXIT_FAILURE);
-  } // if
+  if (close(pipefd[0]) == -1) nope_out("close");
+  if (close(pipefd[1]) == -1) nope_out("close");
 } // close_pipe
 
 vector<char *> mk_cstrvec(vector<string> & strvec) {
@@ -102,3 +84,9 @@ void nice_exec(vector<string> strargs) {
     exit(EXIT_FAILURE);
 } // nice_exec
 
+inline void nope_out(const string & sc_name) {
+  perror(sc_name.c_str());
+  exit(EXIT_FAILURE);
+} // nope_out
+
+ 
