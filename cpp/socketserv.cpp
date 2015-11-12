@@ -65,8 +65,9 @@ int main() {
   if (shutdown(cfd, SHUT_RDWR) == -1) nope_out("shutdown(cfd)");
   if (close(cfd) == -1) nope_out("close(cfd)");
 
-  if (shutdown(sfd, SHUT_RDWR) == -1) nope_out("shutdown (sfd)");
+  if (shutdown(sfd, SHUT_RDWR) == -1) nope_out("shutdown(sfd)");
   if (close(sfd) == -1) nope_out("close(sfd)");
+  // if (unlink(MY_SOCK_PATH) == -1) nope_out("unlink");
 
   return EXIT_SUCCESS;
 } // main

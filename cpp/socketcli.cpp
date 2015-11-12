@@ -23,7 +23,6 @@ int main() {
 
   int cfd;
   struct sockaddr_un my_addr;
-  socklen_t my_addr_size;
 
   // create socket
   if ((cfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
@@ -37,12 +36,12 @@ int main() {
   my_addr.sun_family = AF_UNIX;
   strcpy(my_addr.sun_path, MY_SOCK_PATH);
 
-  my_addr_size = sizeof(struct sockaddr_un);
-
   // connect to the socket
   connect(cfd, (struct sockaddr *) &my_addr, sizeof(my_addr));
 
   cout << "testing..." << endl;
+  cout << "what will happen?" << endl;
+  cout << "where will I end up?" << endl;
 
   return EXIT_SUCCESS;
 } // main
