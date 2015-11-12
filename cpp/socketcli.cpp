@@ -22,6 +22,8 @@ void nope_out(string fname) {
 int main() {
 
   int cfd;
+  int n;
+  char buffer [256];
   struct sockaddr_un my_addr;
 
   // create socket
@@ -29,6 +31,8 @@ int main() {
     nope_out("socket");
   } // if
 
+  // duplicating the socket's fd into standard out
+  // now, printing things goes to the socket
   dup2(cfd, STDOUT_FILENO);
 
   // clear and set structure
@@ -42,6 +46,13 @@ int main() {
   cout << "testing..." << endl;
   cout << "what will happen?" << endl;
   cout << "where will I end up?" << endl;
+
+  cerr << "Dumping File..." << endl;
+  while ((n = read(cfd, buffer, 256)) > 0) {
+    if (n < 256) buffer[n] = '\0';
+    cerr << buffer;
+  } // while
+  cerr << endl;
 
   return EXIT_SUCCESS;
 } // main
