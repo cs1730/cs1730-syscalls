@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -19,7 +20,8 @@ void nope_out(string fname) {
 
 int main() {
 
-  int sfd, cfd;
+  int n, sfd, cfd;
+  char buffer [256];
   struct sockaddr_un my_addr, peer_addr;
   socklen_t peer_addr_size;
 
@@ -52,6 +54,19 @@ int main() {
   if ((cfd = accept(sfd, (struct sockaddr *) &peer_addr, &peer_addr_size)) == -1) {
     nope_out("accept");
   } // if
+
+  cout << "Dumping File..." << endl;
+  while ((n = read(cfd, buffer, 256)) > 0) {
+    if (n < 256) buffer[n] = '\0';
+    cout << buffer;
+  } // while
+  cout << endl;
+
+  if (shutdown(cfd, SHUT_RDWR) == -1) nope_out("shutdown(cfd)");
+  if (close(cfd) == -1) nope_out("close(cfd)");
+
+  if (shutdown(sfd, SHUT_RDWR) == -1) nope_out("shutdown (sfd)");
+  if (close(sfd) == -1) nope_out("close(sfd)");
 
   return EXIT_SUCCESS;
 } // main
