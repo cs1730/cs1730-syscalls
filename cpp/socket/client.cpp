@@ -1,3 +1,8 @@
+
+/** @author  Jackson Wright, Michael E. Cotterell
+ *  @see     LICENSE (MIT style license file)
+ */
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
