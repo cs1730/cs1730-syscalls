@@ -37,4 +37,5 @@ $(filter %, $(EXE)): %: %.o
 clean:
 	@$(foreach exe, $(EXE), echo $(RM) $(exe); ($(RM) $(exe)) || exit;)
 	@$(foreach obj, $(OBJ), echo $(RM) $(obj); ($(RM) $(obj)) || exit;)
+	rm -f socket.sock
 
