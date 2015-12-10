@@ -11,6 +11,7 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <unistd.h>
+#include <signal.h>
  
 using namespace std;
  
@@ -22,17 +23,17 @@ void nope_out(string fname) {
   exit(EXIT_FAILURE);
 } // nope_out
 
-// @TODO implement; unwaited children are zombies
-void check_children() {
-  
-} // check_children
- 
 int main() {
  
   int sfd, cfd;
   char buffer [256];
   struct sockaddr_un my_addr, peer_addr;
   socklen_t peer_addr_size;
+
+  // explicitly prevent children turning into zombies
+  if (signal(SIGCHLD, SIG_IGN) == SIG_ERR) {
+    nope_out("signal");
+  } // if
  
   // create socket
   if ((sfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
