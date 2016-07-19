@@ -14,7 +14,7 @@ int main(const int argc, const char * argv []) {
 
   if (argc != 3) {
     cout << "Usage: time " << argv[0] << " BUFF_SIZE FILE" << endl;
-    cout << "e.g.,: time " << argv[0] << " 4096 random-big.txt" << endl;
+    cout << "e.g.,: time " << argv[0] << " 4096 assets/random-big.txt" << endl;
     exit(0);
   } // if
 
