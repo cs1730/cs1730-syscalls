@@ -1,4 +1,6 @@
 
+/* THIS IS NOT THE LS YOU NEED FOR YOUR PROJECT. IT IS A SMALL EXAMPLE. */
+
 #include <iostream>
 #include <list>
 #include <cstdlib>
